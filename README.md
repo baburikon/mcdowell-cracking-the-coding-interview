@@ -1,1 +1,1 @@
-# mcdowell-cracking-the-coding-interview
+# McDowell 'Cracking the Coding Interview (6th Edition)' - Solutions
