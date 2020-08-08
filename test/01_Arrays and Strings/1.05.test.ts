@@ -1,10 +1,10 @@
-const testCases: [string, string, boolean][] = [
-  ['pale', 'ple', true],
-  ['pales', 'pale', true],
-  ['pale', 'bale', true],
-  ['pale', 'pale', true],
-  ['', '', true],
-  ['pale', 'bake', false]
+const testCases: [number, string, string, boolean][] = [
+  [11, 'pale', 'ple', true],
+  [12, 'pales', 'pale', true],
+  [13, 'pale', 'bale', true],
+  [14, 'pale', 'pale', true],
+  [15, '', '', true],
+  [16, 'pale', 'bake', false]
 ];
 
 /**
@@ -13,13 +13,12 @@ const testCases: [string, string, boolean][] = [
  */
 describe('1.5', () => {
 
-  let numTest = 11;
   for (const testCase of testCases) {
-
-    it(`${numTest++}`.padStart(3, '0'), () => {
-      const str1 = testCase[0];
-      const str2 = testCase[1];
-      const res = testCase[2];
+    const numTest = testCase[0];
+    it(`${numTest}`.padStart(3, '0'), () => {
+      const str1 = testCase[1];
+      const str2 = testCase[2];
+      const res = testCase[3];
       expect(checkDistanceLessOrEqualOneModification(str1, str2)).toBe(res);
     });
   }
