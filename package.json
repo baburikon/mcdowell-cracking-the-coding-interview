@@ -11,11 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "*",
+    "lodash": "^4.17.19",
     "ts-node": "*",
     "typescript": "*"
   },
   "devDependencies": {
     "@types/jest": "*",
+    "@types/lodash": "^4.14.159",
     "jest": "*",
     "ts-jest": "*"
   },
