@@ -40,7 +40,7 @@ export class SinglyLinkedList {
   *[Symbol.iterator]() {
     let curNode = this.head;
     while (curNode) {
-      yield curNode.data;
+      yield curNode;
       curNode = curNode.next;
     }
   }
@@ -49,14 +49,14 @@ export class SinglyLinkedList {
    *
    */
   toString() {
-    return 'SinglyLinkedList: ' + [...this].join(', ');
+    return 'SinglyLinkedList: ' + this.toJSON().join(', ');
   }
 
   /**
    *
    */
   toJSON() {
-    return [...this];
+    return [...this].map(node => node.data);
   }
 
 }
