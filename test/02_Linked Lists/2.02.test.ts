@@ -19,13 +19,16 @@ describe('2.2', () => {
   it('011', () => {
     expect(getNodeByNumFromEnd(list, 1)?.data).toBe(2);
   });
+  it('012', () => {
+    expect(getNodeByNumFromEnd(list, 5)).toBe(null);
+  });
 
   /**
    *
    */
   function getNodeByNumFromEnd(list: SinglyLinkedList, numFromEnd: number): SinglyLinkedListNode | null {
     const arrNodes = [...list];
-    return arrNodes[arrNodes.length - 1 - numFromEnd];
+    return arrNodes[arrNodes.length - 1 - numFromEnd] ?? null;
   }
 
 });
