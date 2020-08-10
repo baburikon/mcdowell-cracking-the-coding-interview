@@ -51,7 +51,7 @@ export class DoublyLinkedList<T> {
   deleteAtHead(): T | undefined {
     if (!this.head) return undefined;
     const data = this.head.data;
-    if (this.head === this.tail) {
+    if (this.isSingle()) {
       this.head = undefined;
       this.tail = undefined;
     } else {
@@ -66,13 +66,64 @@ export class DoublyLinkedList<T> {
   deleteAtTail(): T | undefined {
     if (!this.tail) return undefined;
     const data = this.tail.data;
-    if (this.head === this.tail) {
+    if (this.isSingle()) {
       this.head = undefined;
       this.tail = undefined;
     } else {
       this.tail = this.tail.prev;
     }
     return data;
+  }
+
+  /**
+   *
+   */
+  findAndDeleteAtHead(funcCmp: (data: T) => boolean): T | undefined {
+    let curNode: DoublyLinkedListNode<T> | undefined = this.head;
+    while (curNode) {
+      if (funcCmp(curNode.data)) {
+        return this.deleteNode(curNode);
+      }
+      curNode = curNode.next;
+    }
+    return undefined;
+  }
+
+  /**
+   *
+   */
+  private deleteNode(node: DoublyLinkedListNode<T>): T {
+    const data: T = node.data;
+    if (this.isSingle()) {
+      this.head = undefined;
+      this.tail = undefined;
+    } else {
+      if (node.prev) {
+        node.prev.next = node.next;
+      } else {
+        this.head = node.next;
+      }
+      if (node.next) {
+        node.next.prev = node.prev;
+      } else {
+        this.tail = node.prev;
+      }
+    }
+    return data;
+  }
+
+  /**
+   *
+   */
+  isEmpty(): boolean {
+    return this.head === undefined;
+  }
+
+  /**
+   *
+   */
+  isSingle(): boolean {
+    return this.head === this.tail;
   }
 
   /**
