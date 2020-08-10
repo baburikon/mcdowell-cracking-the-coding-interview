@@ -20,13 +20,15 @@ export class DoublyLinkedList<T> {
    *
    */
   addAtHead(data: T) {
-    if (!this.head) {
-      this.head = new DoublyLinkedListNode<T>(data);
-      this.tail = this.head;
+    const newNode = new DoublyLinkedListNode<T>(data);
+    if (this.isEmpty()) {
+      this.head = newNode;
+      this.tail = newNode;
     } else {
-      const oldHead = this.head;
-      this.head = new DoublyLinkedListNode<T>(data);
-      this.head.next = oldHead;
+      const oldHead = this.head as DoublyLinkedListNode<T>;
+      this.head = newNode;
+      newNode.next = oldHead;
+      oldHead.prev = newNode;
     }
   }
 
@@ -34,14 +36,15 @@ export class DoublyLinkedList<T> {
    *
    */
   addAtTail(data: T) {
-    if (!this.tail) {
-      this.tail = new DoublyLinkedListNode<T>(data);
-      this.head = this.tail;
+    const newNode = new DoublyLinkedListNode<T>(data);
+    if (this.isEmpty()) {
+      this.tail = newNode;
+      this.head = newNode;
     } else {
-      const oldTail = this.tail;
-      this.tail = new DoublyLinkedListNode<T>(data);
-      this.tail.prev = oldTail;
-      oldTail.next = this.tail;
+      const oldTail = this.tail as DoublyLinkedListNode<T>;
+      this.tail = newNode;
+      newNode.prev = oldTail;
+      oldTail.next = newNode;
     }
   }
 
@@ -49,13 +52,14 @@ export class DoublyLinkedList<T> {
    *
    */
   deleteAtHead(): T | undefined {
-    if (!this.head) return undefined;
-    const data = this.head.data;
+    if (this.isEmpty()) return undefined;
+    const oldHead = this.head as DoublyLinkedListNode<T>;
+    const data = oldHead.data;
     if (this.isSingle()) {
-      this.head = undefined;
-      this.tail = undefined;
+      this.clear();
     } else {
-      this.head = this.head.next;
+      this.head = oldHead.next as DoublyLinkedListNode<T>;
+      this.head.prev = undefined;
     }
     return data;
   }
@@ -64,13 +68,14 @@ export class DoublyLinkedList<T> {
    *
    */
   deleteAtTail(): T | undefined {
-    if (!this.tail) return undefined;
-    const data = this.tail.data;
+    if (this.isEmpty()) return undefined;
+    const oldTail = this.tail as DoublyLinkedListNode<T>;
+    const data = oldTail.data;
     if (this.isSingle()) {
-      this.head = undefined;
-      this.tail = undefined;
+      this.clear();
     } else {
-      this.tail = this.tail.prev;
+      this.tail = oldTail.prev as DoublyLinkedListNode<T>;
+      this.tail.next = undefined;
     }
     return data;
   }
@@ -124,6 +129,14 @@ export class DoublyLinkedList<T> {
    */
   isSingle(): boolean {
     return this.head === this.tail;
+  }
+
+  /**
+   *
+   */
+  clear(): void {
+    this.head = undefined;
+    this.tail = undefined;
   }
 
   /**
