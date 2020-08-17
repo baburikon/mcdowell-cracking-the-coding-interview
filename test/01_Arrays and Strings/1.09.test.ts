@@ -1,17 +1,17 @@
-const testCases: [number, string, string, boolean][] = [
-  [11, 'waterbottle', 'erbottlewat', true],
-  [12, '', '', true],
-  [13, 'pale', 'bake', false]
-];
-
-const isSubstring = (str: string, searchValue: string): boolean => str.indexOf(searchValue) !== -1;
-
 /**
  * Допустим, что существует метод isSubstring, проверяющий, является ли одно слово подстрокой другого.
  * Для двух строк sl и s2 напишите код, который проверяет, получена ли строка s2 циклическим сдвигом s1, используя только один вызов метода isSubstring
  * (пример: слово waterbottle получено циклическим сдвигом erbottlewat).
  */
 describe('1.9', () => {
+
+  const testCases: [number, string, string, boolean][] = [
+    [11, 'waterbottle', 'erbottlewat', true],
+    [12, '', '', true],
+    [13, 'pale', 'bake', false]
+  ];
+
+  const isSubstring = (str: string, searchValue: string): boolean => str.indexOf(searchValue) !== -1;
 
   for (const testCase of testCases) {
     const numTest = testCase[0];

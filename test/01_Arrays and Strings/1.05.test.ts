@@ -1,17 +1,17 @@
-const testCases: [number, string, string, boolean][] = [
-  [11, 'pale', 'ple', true],
-  [12, 'pales', 'pale', true],
-  [13, 'pale', 'bale', true],
-  [14, 'pale', 'pale', true],
-  [15, '', '', true],
-  [16, 'pale', 'bake', false]
-];
-
 /**
  * Существуют три вида модифицирующих операций со строками: вставка символа, удаление символа и замена символа.
  * Напишите функцию, которая проверяет, находятся ли две строки на расстоянии одной модификации (или нуля модификаций).
  */
 describe('1.5', () => {
+
+  const testCases: [number, string, string, boolean][] = [
+    [11, 'pale', 'ple', true],
+    [12, 'pales', 'pale', true],
+    [13, 'pale', 'bale', true],
+    [14, 'pale', 'pale', true],
+    [15, '', '', true],
+    [16, 'pale', 'bake', false]
+  ];
 
   for (const testCase of testCases) {
     const numTest = testCase[0];
